@@ -1,10 +1,12 @@
 import './App.css';
+import { RouterProvider } from 'react-router';
+import { router } from './app.routes.tsx';
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-4xl text-red-500">App</h1>
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 };
 
