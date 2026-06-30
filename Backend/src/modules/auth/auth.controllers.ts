@@ -5,7 +5,7 @@ import UserModel from './auth.model.js';
 import { type Request, type Response } from 'express';
 
 export const register = async (req: Request, res: Response) => {
-  const { email, password, fullName, contact } = req.body;
+  const { email, password, fullName, contact, isSeller } = req.body;
 
   const existingUser = await UserModel.findOne({
     $or: [{ email }, { contact }],
@@ -19,6 +19,7 @@ export const register = async (req: Request, res: Response) => {
     password,
     fullName,
     contact,
+    role: isSeller ? 'seller' : 'buyer',
   });
 
   const token = generateToken({ id: user._id.toString() });
