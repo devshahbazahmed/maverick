@@ -5,3 +5,8 @@ export type IRegisterUser = {
   contact: string;
   isSeller: boolean;
 };
+
+export type ILoginUser = {
+  email: string;
+  password: string;
+};

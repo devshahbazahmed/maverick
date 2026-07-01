@@ -30,8 +30,6 @@ export const register = async (req: Request, res: Response) => {
     fullName: user.fullName,
     contact: user.contact,
     role: user.role,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
   };
 
   res.cookie('token', token, {
@@ -41,4 +39,39 @@ export const register = async (req: Request, res: Response) => {
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   return ApiResponse.created(res, 'Registeration success', safeUser);
+};
+
+export const login = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  const user = await UserModel.findOne({ email }).select('+password');
+
+  if (!user) {
+    throw ApiError.badRequest('User with this email does not exists');
+  }
+
+  const isPasswordMatch = await user.comparePassword(password);
+
+  if (!isPasswordMatch) {
+    throw ApiError.badRequest('Invalid email or password');
+  }
+
+  const token = await generateToken({ id: user._id.toString() });
+
+  const safeUser = {
+    id: user._id,
+    email: user.email,
+    fullName: user.fullName,
+    contact: user.contact,
+    role: user.role,
+  };
+
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+
+  return ApiResponse.ok(res, 'Login success', safeUser);
 };

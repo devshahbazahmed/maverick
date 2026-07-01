@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { IRegisterUser } from '../types';
+import type { ILoginUser, IRegisterUser } from '../types';
 
 const authApiInstance = axios.create({
   baseURL: 'http://localhost:3000/api/v1/auth',
@@ -19,6 +19,14 @@ export async function register({
     fullName,
     contact,
     isSeller,
+  });
+  return response.data;
+}
+
+export async function login({ email, password }: ILoginUser) {
+  const response = await authApiInstance.post('/login', {
+    email,
+    password,
   });
   return response.data;
 }

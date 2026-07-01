@@ -1,7 +1,11 @@
 import dotenv from 'dotenv';
-import type { CONFIG } from '../types/index.js';
 
 dotenv.config();
+
+export type CONFIG = {
+  readonly MONGODB_URI: string;
+  readonly JWT_SECRET: string;
+};
 
 if (!process.env.MONGODB_URI) {
   throw new Error('MONGODB_URI is not defined in environment variables');
