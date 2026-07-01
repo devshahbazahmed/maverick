@@ -27,7 +27,7 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     },
     password: {
       type: String,
-      required: function (this: IUser) {
+      required: function (this: IUser): boolean {
         return !this.googleId;
       },
       minLength: 6,

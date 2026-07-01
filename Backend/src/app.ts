@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRouter from './modules/auth/auth.routes.js';
+import productRouter from './modules/product/product.routes.js';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { config } from './common/config/config.js';
@@ -41,5 +42,6 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/products', productRouter);
 
 export default app;

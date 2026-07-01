@@ -22,7 +22,7 @@ export const register = async (req: Request, res: Response) => {
     role: isSeller ? 'seller' : 'buyer',
   });
 
-  const token = generateToken({ id: user._id.toString() });
+  const token = generateToken({ id: user._id.toString(), role: user.role });
 
   const safeUser = {
     id: user._id,
@@ -56,7 +56,10 @@ export const login = async (req: Request, res: Response) => {
     throw ApiError.badRequest('Invalid email or password');
   }
 
-  const token = await generateToken({ id: user._id.toString() });
+  const token = await generateToken({
+    id: user._id.toString(),
+    role: user.role,
+  });
 
   const safeUser = {
     id: user._id,
@@ -107,7 +110,7 @@ export const googleCallback = async (req: Request, res: Response) => {
     });
   }
 
-  const token = generateToken({ id: user._id.toString() });
+  const token = generateToken({ id: user._id.toString(), role: user.role });
 
   res.cookie('token', token, {
     httpOnly: true,
