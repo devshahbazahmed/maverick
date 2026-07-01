@@ -16,9 +16,15 @@ const productRouter: IRouter = Router();
 productRouter.post(
   '/',
   authenticateSeller,
-  createProductValidator,
   upload.array('images', 7),
+  createProductValidator,
   productController.createProduct
+);
+
+productRouter.get(
+  '/seller',
+  authenticateSeller,
+  productController.getSellerProducts
 );
 
 export default productRouter;

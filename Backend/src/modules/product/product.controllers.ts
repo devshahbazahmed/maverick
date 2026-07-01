@@ -38,3 +38,11 @@ export async function createProduct(req: Request, res: Response) {
 
   return ApiResponse.created(res, 'Product created successfully', product);
 }
+
+export async function getSellerProducts(req: Request, res: Response) {
+  const seller = req.user as AuthUser;
+
+  const products = await ProductModel.find({ seller: seller.id });
+
+  return ApiResponse.ok(res, 'Products fetched successfully', products);
+}
