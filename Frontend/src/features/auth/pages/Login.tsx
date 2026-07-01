@@ -249,8 +249,42 @@ export default function LoginPage() {
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
               </button>
+              {/* Thin gold divider */}
+              <div className="h-px bg-gold/20 mb-8" />
             </div>
           </form>
+
+          {/* Google Signin */}
+          <a href="/api/v1/auth/google">
+            <button
+              id="register-submit"
+              type="submit"
+              className="
+                  w-full flex items-center justify-center gap-2.5
+                  py-3.5 uppercase text-[12px] font-semibold tracking-[0.14em]
+                  text-base cursor-pointer border-0
+                  bg-linear-to-r from-white via-whitesmoke to-white
+                  transition-[opacity,transform] duration-200
+                  hover:opacity-90 hover:-translate-y-px active:translate-y-0
+                "
+            >
+              <img src="/google.svg" alt="google" width={30} height={30} />
+              <span>Continue with Google</span>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
+          </a>
 
           {/* Footer note */}
           <p className="mt-8 text-[11px] text-muted/60 text-center leading-relaxed tracking-wide">

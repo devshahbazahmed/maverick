@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { ILoginUser, IRegisterUser } from '../types';
 
 const authApiInstance = axios.create({
-  baseURL: 'http://localhost:3000/api/v1/auth',
+  baseURL: '/api/v1/auth',
   withCredentials: true,
 });
 

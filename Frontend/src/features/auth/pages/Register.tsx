@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { IRegisterUser } from '../types';
 import { useAuth } from '../hook/useAuth';
-import { useNavigate } from "react-router"
+import { useNavigate } from 'react-router';
 
 // ─── Shared class strings ────────────────────────────────────────────────────
 const fieldLabelCls =
@@ -12,7 +12,7 @@ const inputCls =
 
 // ─── Component ───────────────────────────────────────────────────────────────
 export default function RegisterPage() {
-  const { handleRegister } = useAuth()
+  const { handleRegister } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<IRegisterUser>({
     fullName: '',
@@ -39,19 +39,17 @@ export default function RegisterPage() {
       password: formData.password,
       fullName: formData.fullName,
       contact: formData.contact,
-      isSeller: formData.isSeller
-    })
-    navigate("/")
+      isSeller: formData.isSeller,
+    });
+    navigate('/');
   };
 
   return (
     <div className="min-h-screen flex font-montserrat bg-base">
-
       {/* ══════════════════════════════════════════
           LEFT — editorial image panel
       ══════════════════════════════════════════ */}
       <div className="hidden lg:flex lg:w-[52%] xl:w-[55%] relative overflow-hidden flex-col">
-
         {/* Full-bleed hero image */}
         <img
           src="/register-hero.png"
@@ -86,8 +84,9 @@ export default function RegisterPage() {
             <em className="not-italic text-gold">edge.</em>
           </h2>
           {/* Sub */}
-          <p className="text-[13px] text-on-surface/50 leading-relaxed tracking-wide max-w-[280px]">
-            Curated luxury for the discerning individual. Join Maverick and own your aesthetic.
+          <p className="text-[13px] text-on-surface/50 leading-relaxed tracking-wide max-w-70">
+            Curated luxury for the discerning individual. Join Maverick and own
+            your aesthetic.
           </p>
 
           {/* Social proof strip */}
@@ -115,10 +114,8 @@ export default function RegisterPage() {
           RIGHT — form panel
       ══════════════════════════════════════════ */}
       <div className="flex-1 flex items-center justify-center px-6 py-12 bg-surface overflow-y-auto">
-
         {/* Inner form card — constrained width */}
-        <div className="w-full max-w-[400px]">
-
+        <div className="w-full max-w-100">
           {/* Logo — always visible on right panel */}
           <div className="flex justify-center lg:justify-start mb-10">
             <img
@@ -153,7 +150,6 @@ export default function RegisterPage() {
           {/* Form */}
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-7">
-
               {/* Full Name */}
               <div className="input-group">
                 <label htmlFor="fullName" className={fieldLabelCls}>
@@ -210,17 +206,37 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    aria-label={
+                      showPassword ? 'Hide password' : 'Show password'
+                    }
                     className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center text-muted hover:text-on-surface transition-colors duration-200 cursor-pointer bg-transparent border-0 p-0"
                   >
                     {showPassword ? (
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        width="17"
+                        height="17"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
                         <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
                         <line x1="1" y1="1" x2="23" y2="23" />
                       </svg>
                     ) : (
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        width="17"
+                        height="17"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                         <circle cx="12" cy="12" r="3" />
                       </svg>
@@ -257,7 +273,7 @@ export default function RegisterPage() {
                   onChange={handleChange}
                   className="
                     custom-checkbox relative shrink-0 mt-0.5
-                    size-[17px] cursor-pointer appearance-none
+                    size-4.25 cursor-pointer appearance-none
                     border border-[#3a3a3a] bg-transparent
                     transition-colors duration-200
                     checked:border-gold checked:bg-gold
@@ -279,7 +295,7 @@ export default function RegisterPage() {
                 type="submit"
                 className="
                   w-full flex items-center justify-center gap-2.5
-                  py-[14px] uppercase text-[12px] font-semibold tracking-[0.14em]
+                  py-3.5 uppercase text-[12px] font-semibold tracking-[0.14em]
                   text-base cursor-pointer border-0
                   bg-linear-to-br from-gold via-gold-light to-gold
                   transition-[opacity,transform] duration-200
@@ -287,31 +303,77 @@ export default function RegisterPage() {
                 "
               >
                 <span>Create Account</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
               </button>
-
+              {/* Thin gold divider */}
+              <div className="h-px bg-gold/20 mb-8" />
             </div>
           </form>
+
+          {/* Google Signin */}
+          <a href="/api/v1/auth/google">
+            <button
+              id="register-submit"
+              type="submit"
+              className="
+                  w-full flex items-center justify-center gap-2.5
+                  py-3.5 uppercase text-[12px] font-semibold tracking-[0.14em]
+                  text-base cursor-pointer border-0
+                  bg-linear-to-r from-white via-whitesmoke to-white
+                  transition-[opacity,transform] duration-200
+                  hover:opacity-90 hover:-translate-y-px active:translate-y-0
+                "
+            >
+              <img src="/google.svg" alt="google" width={30} height={30} />
+              <span>Continue with Google</span>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
+          </a>
 
           {/* Footer note */}
           <p className="mt-8 text-[11px] text-muted/60 text-center leading-relaxed tracking-wide">
             By creating an account you agree to our{' '}
-            <a href="/terms" className="text-muted hover:text-gold transition-colors duration-200 underline underline-offset-2">
+            <a
+              href="/terms"
+              className="text-muted hover:text-gold transition-colors duration-200 underline underline-offset-2"
+            >
               Terms
             </a>{' '}
             &amp;{' '}
-            <a href="/privacy" className="text-muted hover:text-gold transition-colors duration-200 underline underline-offset-2">
+            <a
+              href="/privacy"
+              className="text-muted hover:text-gold transition-colors duration-200 underline underline-offset-2"
+            >
               Privacy Policy
             </a>
             .
           </p>
-
         </div>
       </div>
-
     </div>
   );
 }

@@ -75,3 +75,8 @@ export const login = async (req: Request, res: Response) => {
 
   return ApiResponse.ok(res, 'Login success', safeUser);
 };
+
+export const googleCallback = async (req: Request, res: Response) => {
+  console.log(req.user);
+  res.redirect('http://localhost:5173/');
+};
