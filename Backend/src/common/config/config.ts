@@ -8,6 +8,7 @@ export type CONFIG = {
   readonly GOOGLE_CLIENT_ID: string;
   readonly GOOGLE_CLIENT_SECRET: string;
   readonly GOOGLE_CALLBACK_URL: string;
+  readonly NODE_ENV: string;
 };
 
 if (!process.env.MONGODB_URI) {
@@ -34,10 +35,15 @@ if (!process.env.GOOGLE_CALLBACK_URL) {
   );
 }
 
+if (!process.env.NODE_ENV) {
+  throw new Error('NODE_ENV is not defined in environment variables');
+}
+
 export const config: CONFIG = {
   MONGODB_URI: process.env.MONGODB_URI!,
   JWT_SECRET: process.env.JWT_SECRET!,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID!,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET!,
   GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL!,
+  NODE_ENV: process.env.NODE_ENV!,
 };

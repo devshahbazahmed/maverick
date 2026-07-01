@@ -76,7 +76,44 @@ export const login = async (req: Request, res: Response) => {
   return ApiResponse.ok(res, 'Login success', safeUser);
 };
 
+type GoogleUser = {
+  id: string;
+  displayName: string;
+  emails: {
+    value: string;
+    verified: boolean;
+  }[];
+  photos: {
+    value: string;
+  }[];
+};
+
 export const googleCallback = async (req: Request, res: Response) => {
-  console.log(req.user);
+  const { id, displayName, emails, photos } = req.user as GoogleUser;
+  const email = emails?.[0]?.value;
+  const profilePic = photos?.[0]?.value;
+
+  if (!email) {
+    throw ApiError.badRequest('Email not provided by Google');
+  }
+
+  let user = await UserModel.findOne({ email });
+
+  if (!user) {
+    user = await UserModel.create({
+      email,
+      googleId: id,
+      fullName: displayName,
+    });
+  }
+
+  const token = generateToken({ id: user._id.toString() });
+
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
   res.redirect('http://localhost:5173/');
 };

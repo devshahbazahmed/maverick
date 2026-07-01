@@ -10,6 +10,7 @@ interface IUser {
   password: string;
   contact: string;
   role: 'buyer' | 'seller';
+  googleId?: string;
 }
 
 type UserDocument = Document & IUser & IUserMethods;
@@ -26,7 +27,9 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     },
     password: {
       type: String,
-      required: [true, 'Password is required'],
+      required: function (this: IUser) {
+        return !this.googleId;
+      },
       minLength: 6,
       select: false,
     },
@@ -36,12 +39,16 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     },
     contact: {
       type: String,
-      required: [true, 'User contact is required'],
+      required: false,
     },
     role: {
       type: String,
       enum: ['buyer', 'seller'],
       default: 'buyer',
+    },
+    googleId: {
+      type: String,
+      required: false,
     },
   },
   { timestamps: true }
