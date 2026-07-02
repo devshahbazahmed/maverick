@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router';
 
 // ─── Shared class strings ────────────────────────────────────────────────────
 const fieldLabelCls =
-  'field-label block text-[10px] font-semibold tracking-[0.18em] uppercase text-muted mb-2 transition-colors duration-200';
+  'field-label block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted mb-2 transition-colors duration-200';
 
 const inputCls =
-  'w-full bg-transparent border-0 border-b border-border text-on-surface text-[15px] tracking-[0.01em] py-2.5 outline-none placeholder:text-muted transition-colors duration-200 focus:border-b-gold';
+  'w-full bg-transparent border-0 border-b border-border text-on-surface text-[15px] tracking-[0.01em] py-2.5 outline-none placeholder:text-muted/70 transition-colors duration-200 focus:border-b-on-surface';
 
 // ─── Component ───────────────────────────────────────────────────────────────
 export default function LoginPage() {
@@ -39,7 +39,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex font-montserrat bg-base">
+    <div className="min-h-screen flex font-montserrat bg-base text-on-surface">
       {/* ══════════════════════════════════════════
           LEFT — editorial image panel
       ══════════════════════════════════════════ */}
@@ -51,8 +51,8 @@ export default function LoginPage() {
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
 
-        {/* Dark gradient overlay — bottom-to-top scrim */}
-        <div className="absolute inset-0 bg-linear-to-t from-base via-base/60 to-transparent" />
+        {/* Dark gradient scrim — bottom-to-top for readable text */}
+        <div className="absolute inset-0 bg-linear-to-t from-[#1a1410]/95 via-[#2a2420]/70 to-transparent" />
 
         {/* Thin left gold rule */}
         <div className="absolute top-0 left-0 h-full w-px bg-gold/20" />
@@ -60,7 +60,7 @@ export default function LoginPage() {
         {/* Brand mark — top-left logo */}
         <div className="relative z-10 p-10">
           <img
-            src="/maverick-logo.svg"
+            src="/maverick-logo-white.svg"
             alt="Maverick"
             className="h-10 w-auto"
           />
@@ -73,43 +73,24 @@ export default function LoginPage() {
             New Collection — 2026
           </p>
           {/* Headline */}
-          <h2 className="font-playfair text-4xl xl:text-5xl font-bold text-on-surface leading-[1.1] tracking-tight mb-4 max-w-xs">
+          <h2 className="font-playfair text-4xl xl:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-4 max-w-xs">
             Wear the&nbsp;
             <em className="not-italic text-gold">edge.</em>
           </h2>
           {/* Sub */}
-          <p className="text-[13px] text-on-surface/50 leading-relaxed tracking-wide max-w-70">
+          <p className="text-[13px] text-white leading-relaxed tracking-wide max-w-70">
             Curated luxury for the discerning individual. Join Maverick and own
             your aesthetic.
           </p>
-
-          {/* Social proof strip */}
-          <div className="mt-8 flex items-center gap-6">
-            <div className="border-t border-on-surface/10 flex-1" />
-            <div className="flex -space-x-2">
-              {['#8A6F47', '#5C4A3A', '#A07850', '#6B503A'].map((c, i) => (
-                <div
-                  key={i}
-                  className="w-7 h-7 rounded-full border border-base/60 flex items-center justify-center text-[9px] font-bold text-base"
-                  style={{ backgroundColor: c }}
-                >
-                  {String.fromCharCode(65 + i)}
-                </div>
-              ))}
-            </div>
-            <p className="text-[11px] text-on-surface/40 tracking-wide whitespace-nowrap">
-              12k+ members
-            </p>
-          </div>
         </div>
       </div>
 
       {/* ══════════════════════════════════════════
           RIGHT — form panel
       ══════════════════════════════════════════ */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-surface overflow-y-auto">
+      <div className="flex-1 flex items-center justify-center px-6 py-12 bg-white/60 overflow-y-auto">
         {/* Inner form card — constrained width */}
-        <div className="w-full max-w-100">
+        <div className="w-full max-w-100 rounded-[28px] border border-border/60 bg-white/55 p-6 sm:p-8 shadow-[0_20px_60px_rgba(10,10,10,0.08)] backdrop-blur-sm">
           {/* Logo — always visible on right panel */}
           <div className="flex justify-center lg:justify-start mb-10">
             <img
@@ -138,8 +119,8 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Thin gold divider */}
-          <div className="h-px bg-gold/20 mb-8" />
+          {/* Thin divider */}
+          <div className="h-px bg-border-subtle mb-8" />
 
           {/* Form */}
           <form onSubmit={handleSubmit}>
@@ -228,13 +209,11 @@ export default function LoginPage() {
                 className="
                   w-full flex items-center justify-center gap-2.5
                   py-3.5 uppercase text-[12px] font-semibold tracking-[0.14em]
-                  text-base cursor-pointer border-0
-                  bg-linear-to-br from-gold via-gold-light to-gold
-                  transition-[opacity,transform] duration-200
-                  hover:opacity-90 hover:-translate-y-px active:translate-y-0
+                  text-base cursor-pointer border-0 rounded-full
+                  bg-[#111111] transition-[opacity,transform,box-shadow] duration-200 hover:opacity-90 hover:-translate-y-px hover:shadow-lg active:translate-y-0
                 "
               >
-                <span>Create Account</span>
+                <span>Log In</span>
                 <svg
                   width="15"
                   height="15"
@@ -261,10 +240,10 @@ export default function LoginPage() {
               type="submit"
               className="
                   w-full flex items-center justify-center gap-2.5
-                  py-3.5 uppercase text-[12px] font-semibold tracking-[0.14em]
-                  text-base cursor-pointer border-0
-                  bg-linear-to-r from-white via-whitesmoke to-white
-                  transition-[opacity,transform] duration-200
+                  py-2 uppercase text-[12px] font-semibold tracking-[0.14em]
+                  text-[#1111111] cursor-pointer border-2 border-black
+                  bg-base
+                  transition-[opacity,transform] duration-200 rounded-full
                   hover:opacity-90 hover:-translate-y-px active:translate-y-0
                 "
             >
@@ -287,18 +266,18 @@ export default function LoginPage() {
           </a>
 
           {/* Footer note */}
-          <p className="mt-8 text-[11px] text-muted/60 text-center leading-relaxed tracking-wide">
+          <p className="mt-8 text-[11px] text-[#888888] text-center leading-relaxed tracking-wide">
             By creating an account you agree to our{' '}
             <a
               href="/terms"
-              className="text-muted hover:text-gold transition-colors duration-200 underline underline-offset-2"
+              className="text-[#555555] hover:text-gold transition-colors duration-200 underline underline-offset-2"
             >
               Terms
             </a>{' '}
             &amp;{' '}
             <a
               href="/privacy"
-              className="text-muted hover:text-gold transition-colors duration-200 underline underline-offset-2"
+              className="text-[#555555] hover:text-gold transition-colors duration-200 underline underline-offset-2"
             >
               Privacy Policy
             </a>

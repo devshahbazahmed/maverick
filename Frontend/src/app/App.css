@@ -1,17 +1,22 @@
-@import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap');
+@import 'tailwindcss';
 
 @theme {
   --font-playfair: 'Playfair Display', serif;
   --font-montserrat: 'Montserrat', sans-serif;
-  --color-gold: #d4a017;
-  --color-gold-light: #f6c843;
-  --color-surface: #131313;
-  --color-base: #0d0d0d;
-  --color-border: #262626;
-  --color-border-subtle: #1a1a1a;
-  --color-on-surface: #e4e2e1;
-  --color-muted: #555555;
+  --color-gold: #b98c3a;
+  --color-gold-light: #e8d0a3;
+  --color-surface: #f7f2e8;
+  --color-base: #fcfaf7;
+  --color-border: #ddd0b6;
+  --color-border-subtle: #efe8db;
+  --color-on-surface: #171717;
+  --color-muted: #6f685c;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-on-surface);
 }
 
 /* Focus-within: label turns gold when sibling input is focused */
