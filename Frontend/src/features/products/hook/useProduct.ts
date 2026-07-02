@@ -1,6 +1,7 @@
 import {
   createProduct,
   getAllProducts,
+  getProductDetails,
   getSellerProducts,
 } from '../service/products.api.ts';
 import { setProducts, setSellerProducts } from '../state/product.slice.ts';
@@ -23,12 +24,18 @@ export const useProduct = () => {
   async function handleGetAllProducts() {
     const data = await getAllProducts();
     dispatch(setProducts(data.data));
-    return data.products;
+    return data.data;
+  }
+
+  async function handleGetProductById(productId: string) {
+    const data = await getProductDetails(productId);
+    return data.data;
   }
 
   return {
     handleCreateProduct,
     handleGetSellerProducts,
     handleGetAllProducts,
+    handleGetProductById,
   };
 };

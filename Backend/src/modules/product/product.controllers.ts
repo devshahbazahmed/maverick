@@ -3,6 +3,7 @@ import ProductModel from './product.model.js';
 import { uploadFile } from '../../common/services/storage.service.js';
 import ApiResponse from '../../common/utils/api-response.js';
 import type { AuthUser } from '../../common/types/index.js';
+import ApiError from '../../common/utils/api-error.js';
 
 export async function createProduct(req: Request, res: Response) {
   const { title, description, priceAmount, priceCurrency } = req.body;
@@ -43,4 +44,16 @@ export async function getSellerProducts(req: Request, res: Response) {
 export async function getAllProducts(req: Request, res: Response) {
   const products = await ProductModel.find();
   return ApiResponse.ok(res, 'All products fetched successfully', products);
+}
+
+export async function getProductDetails(req: Request, res: Response) {
+  const { id } = req.params;
+
+  const product = await ProductModel.findById(id);
+
+  if (!product) {
+    throw ApiError.notFound('Product not found');
+  }
+
+  return ApiResponse.ok(res, 'Product details fetched successfully', product);
 }
