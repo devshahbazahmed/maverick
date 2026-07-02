@@ -27,4 +27,6 @@ productRouter.get(
   productController.getSellerProducts
 );
 
+productRouter.get('/', productController.getAllProducts);
+
 export default productRouter;

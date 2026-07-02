@@ -1,5 +1,9 @@
-import { createProduct, getSellerProducts } from '../service/products.api.ts';
-import { setSellerProducts } from '../state/product.slice.ts';
+import {
+  createProduct,
+  getAllProducts,
+  getSellerProducts,
+} from '../service/products.api.ts';
+import { setProducts, setSellerProducts } from '../state/product.slice.ts';
 import { useAppDispatch } from '../../../app/app.hooks.ts';
 
 export const useProduct = () => {
@@ -7,18 +11,24 @@ export const useProduct = () => {
 
   async function handleCreateProduct(formData: FormData) {
     const data = await createProduct(formData);
-    return data.product;
-    // dispatch(setSellerProducts(data.products));
+    return data.data;
   }
 
   async function handleGetSellerProducts() {
     const data = await getSellerProducts();
     dispatch(setSellerProducts(data.data));
+    return data.data;
+  }
+
+  async function handleGetAllProducts() {
+    const data = await getAllProducts();
+    dispatch(setProducts(data.data));
     return data.products;
   }
 
   return {
     handleCreateProduct,
     handleGetSellerProducts,
+    handleGetAllProducts,
   };
 };

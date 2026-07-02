@@ -148,7 +148,7 @@ export default function CreateProduct() {
 
       // Auto navigate back to dashboard/home after 2.5 seconds
       setTimeout(() => {
-        navigate('/');
+        navigate('/seller/dashboard');
       }, 2500);
     } catch (err) {
       console.error(err);

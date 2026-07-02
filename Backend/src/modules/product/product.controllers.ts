@@ -39,3 +39,8 @@ export async function getSellerProducts(req: Request, res: Response) {
 
   return ApiResponse.ok(res, 'Products fetched successfully', products);
 }
+
+export async function getAllProducts(req: Request, res: Response) {
+  const products = await ProductModel.find();
+  return ApiResponse.ok(res, 'All products fetched successfully', products);
+}
