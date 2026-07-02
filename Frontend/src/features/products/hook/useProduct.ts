@@ -13,7 +13,7 @@ export const useProduct = () => {
 
   async function handleGetSellerProducts() {
     const data = await getSellerProducts();
-    dispatch(setSellerProducts(data.products));
+    dispatch(setSellerProducts(data.data));
     return data.products;
   }
 
