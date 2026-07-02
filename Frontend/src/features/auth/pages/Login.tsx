@@ -35,11 +35,12 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await handleLogin({
+    const user = await handleLogin({
       email: formData.email,
       password: formData.password,
     });
-    navigate('/');
+    if (user.role === 'buyer') navigate('/');
+    else if (user.role === 'seller') navigate('/seller/dashboard');
   };
 
   return (

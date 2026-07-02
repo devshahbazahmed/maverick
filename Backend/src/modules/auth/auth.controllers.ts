@@ -1,3 +1,8 @@
+import type {
+  AuthUser,
+  GoogleUser,
+  SafeUser,
+} from '../../common/types/index.js';
 import ApiError from '../../common/utils/api-error.js';
 import ApiResponse from '../../common/utils/api-response.js';
 import { generateToken } from '../../common/utils/jwt.utils.js';
@@ -79,18 +84,6 @@ export const login = async (req: Request, res: Response) => {
   return ApiResponse.ok(res, 'Login success', safeUser);
 };
 
-type GoogleUser = {
-  id: string;
-  displayName: string;
-  emails: {
-    value: string;
-    verified: boolean;
-  }[];
-  photos: {
-    value: string;
-  }[];
-};
-
 export const googleCallback = async (req: Request, res: Response) => {
   const { id, displayName, emails, photos } = req.user as GoogleUser;
   const email = emails?.[0]?.value;
@@ -119,4 +112,22 @@ export const googleCallback = async (req: Request, res: Response) => {
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.redirect('http://localhost:5173/');
+};
+
+export const getMe = async (req: Request, res: Response) => {
+  const user = req.user as AuthUser;
+
+  if (!user) {
+    throw ApiError.unauthorized('Unauthorized');
+  }
+
+  const safeUser: SafeUser = {
+    id: user.id.toString(),
+    email: user.email,
+    contact: user.contact,
+    fullName: user.fullName,
+    role: user.role,
+  };
+
+  return ApiResponse.ok(res, 'User fetched successfully', safeUser);
 };

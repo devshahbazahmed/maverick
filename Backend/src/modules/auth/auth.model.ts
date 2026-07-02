@@ -1,17 +1,6 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
-
-interface IUserMethods {
-  comparePassword(candidatePassword: string): Promise<boolean>;
-}
-interface IUser {
-  fullName: string;
-  email: string;
-  password: string;
-  contact: string;
-  role: 'buyer' | 'seller';
-  googleId?: string;
-}
+import type { IUser, IUserMethods } from '../../common/types/index.js';
 
 type UserDocument = Document & IUser & IUserMethods;
 

@@ -30,3 +30,8 @@ export async function login({ email, password }: ILoginUser) {
   });
   return response.data;
 }
+
+export async function getUser() {
+  const response = await authApiInstance.get('/me');
+  return response.data;
+}

@@ -1,11 +1,6 @@
 import ImageKit from '@imagekit/nodejs';
 import { config } from '../config/config.js';
-
-export type UploadFileParams = {
-  buffer: Buffer;
-  fileName: string;
-  folder?: string;
-};
+import type { UploadFileParams } from '../types/index.js';
 
 const client = new ImageKit({
   privateKey: config.IMAGEKIT_PRIVATE_KEY,

@@ -1,17 +1,7 @@
 import dotenv from 'dotenv';
+import type { CONFIG } from '../types/index.js';
 
 dotenv.config();
-
-export type CONFIG = {
-  readonly MONGODB_URI: string;
-  readonly JWT_SECRET: string;
-  readonly GOOGLE_CLIENT_ID: string;
-  readonly GOOGLE_CLIENT_SECRET: string;
-  readonly GOOGLE_CALLBACK_URL: string;
-  readonly NODE_ENV: string;
-  readonly IMAGEKIT_PRIVATE_KEY: string;
-  readonly IMAGEKIT_PUBLIC_KEY: string;
-};
 
 if (!process.env.MONGODB_URI) {
   throw new Error('MONGODB_URI is not defined in environment variables');

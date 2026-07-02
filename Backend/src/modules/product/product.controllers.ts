@@ -1,15 +1,8 @@
 import { type Request, type Response } from 'express';
 import ProductModel from './product.model.js';
 import { uploadFile } from '../../common/services/storage.service.js';
-import { Types } from 'mongoose';
 import ApiResponse from '../../common/utils/api-response.js';
-
-type AuthUser = {
-  id: string;
-  _id?: Types.ObjectId;
-  email: string;
-  role: 'buyer' | 'seller';
-};
+import type { AuthUser } from '../../common/types/index.js';
 
 export async function createProduct(req: Request, res: Response) {
   const { title, description, priceAmount, priceCurrency } = req.body;

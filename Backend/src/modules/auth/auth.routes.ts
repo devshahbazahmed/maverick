@@ -6,6 +6,7 @@ import {
 import * as authController from './auth.controllers.js';
 import passport from 'passport';
 import { config } from '../../common/config/config.js';
+import { authenticateUser } from './auth.middleware.js';
 
 const authRouter: IRouter = Router();
 
@@ -29,5 +30,7 @@ authRouter.get(
   }),
   authController.googleCallback
 );
+
+authRouter.get('/me', authenticateUser, authController.getMe);
 
 export default authRouter;

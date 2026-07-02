@@ -38,14 +38,15 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await handleRegister({
+    const user = await handleRegister({
       email: formData.email,
       password: formData.password,
       fullName: formData.fullName,
       contact: formData.contact,
       isSeller: formData.isSeller,
     });
-    navigate('/');
+    if (user.role === 'buyer') navigate('/');
+    else if (user.role === 'seller') navigate('/seller/dashboard');
   };
 
   return (
