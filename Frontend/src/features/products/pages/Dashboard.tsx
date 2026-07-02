@@ -59,6 +59,7 @@ export default function Dashboard() {
 
               return (
                 <div
+                  onClick={() => navigate(`/seller/product/${product._id}`)}
                   key={product._id}
                   className="group bg-white/20 rounded-2xl border border-border/40 shadow-[0_10px_30px_rgba(10,10,10,0.05)] overflow-hidden hover:shadow-[0_20px_60px_rgba(10,10,10,0.12)] transition-all duration-300"
                 >
