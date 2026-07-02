@@ -2,6 +2,10 @@ import { useState } from 'react';
 import type { IRegisterUser } from '../types';
 import { useAuth } from '../hook/useAuth';
 import { useNavigate } from 'react-router';
+import LeftImagePanel from '../components/LeftImagePanel';
+import FooterNote from '../components/FooterNote';
+import GoogleButton from '../components/GoogleButton';
+import Button from '../components/Button';
 
 // ─── Shared class strings ────────────────────────────────────────────────────
 const fieldLabelCls =
@@ -46,54 +50,8 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex font-montserrat bg-base text-on-surface">
-      {/* ══════════════════════════════════════════
-          LEFT — editorial image panel
-      ══════════════════════════════════════════ */}
-      <div className="hidden lg:flex lg:w-[52%] xl:w-[55%] relative overflow-hidden flex-col">
-        {/* Full-bleed hero image */}
-        <img
-          src="/register-hero.png"
-          alt="Maverick editorial"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
+      <LeftImagePanel />
 
-        {/* Dark gradient scrim — bottom-to-top for readable text */}
-        <div className="absolute inset-0 bg-linear-to-t from-[#1a1410]/95 via-[#2a2420]/70 to-transparent" />
-
-        {/* Thin left gold rule */}
-        <div className="absolute top-0 left-0 h-full w-px bg-gold/20" />
-
-        {/* Brand mark — top-left logo */}
-        <div className="relative z-10 p-10">
-          <img
-            src="/maverick-logo-white.svg"
-            alt="Maverick"
-            className="h-10 w-auto"
-          />
-        </div>
-
-        {/* Bottom copy block */}
-        <div className="relative z-10 mt-auto p-10 pb-12">
-          {/* Overline */}
-          <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gold mb-4">
-            New Collection — 2026
-          </p>
-          {/* Headline */}
-          <h2 className="font-playfair text-4xl xl:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-4 max-w-xs">
-            Wear the&nbsp;
-            <em className="not-italic text-gold">edge.</em>
-          </h2>
-          {/* Sub */}
-          <p className="text-[13px] text-white leading-relaxed tracking-wide max-w-70">
-            Curated luxury for the discerning individual. Join Maverick and own
-            your aesthetic.
-          </p>
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════
-          RIGHT — form panel
-      ══════════════════════════════════════════ */}
       <div className="flex-1 flex items-center justify-center px-6 py-12 bg-white/60 overflow-y-auto">
         {/* Inner form card — constrained width */}
         <div className="w-full max-w-100 rounded-[28px] border border-border/60 bg-white/60 p-6 sm:p-8 shadow-[0_20px_60px_rgba(10,10,10,0.08)] backdrop-blur-sm">
@@ -271,88 +229,17 @@ export default function RegisterPage() {
               </div>
 
               {/* Submit */}
-              <button
-                id="register-submit"
-                type="submit"
-                className="
-                  w-full flex items-center justify-center gap-2.5
-                  py-3.5 uppercase text-[12px] font-semibold tracking-[0.14em]
-                  text-base cursor-pointer border-0 rounded-full
-                  bg-[#111111] text-[#fcfaf7]
-                  transition-[opacity,transform,box-shadow] duration-200
-                  hover:opacity-90 hover:-translate-y-px hover:shadow-lg active:translate-y-0
-                "
-              >
-                <span>Create Account</span>
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
+              <Button>Create Account</Button>
               {/* Thin gold divider */}
               <div className="h-px bg-gold/20 mb-8" />
             </div>
           </form>
 
           {/* Google Signin */}
-          <a href="/api/v1/auth/google">
-            <button
-              id="register-submit"
-              type="submit"
-              className="
-                  w-full flex items-center justify-center gap-2.5
-                  py-2 uppercase text-[12px] font-semibold tracking-[0.14em]
-                  text-[#111111] cursor-pointer border-2 border-black
-                  bg-white rounded-full
-                  transition-[opacity,transform] duration-200
-                  hover:opacity-90 hover:-translate-y-px active:translate-y-0
-                "
-            >
-              <img src="/google.svg" alt="google" width={30} height={30} />
-              <span>Continue with Google</span>
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </button>
-          </a>
+          <GoogleButton />
 
           {/* Footer note */}
-          <p className="mt-8 text-[11px] text-[#888888] text-center leading-relaxed tracking-wide">
-            By creating an account you agree to our{' '}
-            <a
-              href="/terms"
-              className="text-[#555555] hover:text-gold transition-colors duration-200 underline underline-offset-2"
-            >
-              Terms
-            </a>{' '}
-            &amp;{' '}
-            <a
-              href="/privacy"
-              className="text-[#555555] hover:text-gold transition-colors duration-200 underline underline-offset-2"
-            >
-              Privacy Policy
-            </a>
-            .
-          </p>
+          <FooterNote />
         </div>
       </div>
     </div>

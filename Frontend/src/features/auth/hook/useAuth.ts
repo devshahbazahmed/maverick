@@ -1,10 +1,10 @@
 import { setError, setLoading, setUser } from '../state/auth.slice.ts';
 import { login, register } from '../service/auth.api.ts';
 import type { ILoginUser, IRegisterUser } from '../types/index.ts';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../../app/app.hooks.ts';
 
 export const useAuth = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   async function handleRegister({
     email,

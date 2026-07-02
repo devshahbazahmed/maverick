@@ -1,9 +1,9 @@
 import { createProduct, getSellerProducts } from '../service/products.api.ts';
-import { useDispatch } from 'react-redux';
 import { setSellerProducts } from '../state/product.slice.ts';
+import { useAppDispatch } from '../../../app/app.hooks.ts';
 
 export const useProduct = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   async function handleCreateProduct(formData: FormData) {
     const data = await createProduct(formData);
